@@ -58,6 +58,18 @@ public class JDBCExample5 {
 			sb.append("'");
 			sb.append(" ORDER BY e.JOB_CODE ASC");
 			
+/*
+			String sql = String.format("""
+SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_TITLE, J.JOB_NAME 
+FROM EMPLOYEE E
+JOIN JOB J ON (E.JOB_CODE = J.JOB_CODE) 
+JOIN DEPARTMENT D ON (E.DEPT_CODE = D.DEPT_ID)
+WHERE DEPT_TITLE = '%s'
+ORDER BY E.JOB_CODE ASC 	
+					""", deptTitle); 
+
+ */
+			
 			
 			String sql = sb.toString();
 		 
@@ -82,10 +94,10 @@ public class JDBCExample5 {
 				
 				String emp_id = rs.getString("EMP_ID");
 				String emp_Name = rs.getString("EMP_NAME");
-				String dept_Name = rs.getString("DEPT_TITLE");
+				String dept_Title = rs.getString("DEPT_TITLE");
 				String job_Name = rs.getString("JOB_NAME");
 				
-				System.out.printf("%s | %s | %s | %s \n", emp_id, emp_Name, dept_Name, job_Name);
+				System.out.printf("%s | %s | %s | %s \n", emp_id, emp_Name, dept_Title, job_Name);
 			}
 			
 			
